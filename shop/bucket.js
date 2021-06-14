@@ -1,37 +1,82 @@
-const NAME = 0;
-const PRICE = 1;
-const COUNT = 2;
-const DISCOUNT = 3;
-	
-let g_busket = [
-	["Apple", 20, 3, 15],
-	["Potato", 10, 20, 30],
-	["Watermelon", 100, 1, 0]
-];
+const USD = 'usd';
+const RUB = 'rub';
 
-function countPrice(good) {
-	return good[PRICE] * (1 - good[DISCOUNT]/100) * good[COUNT];
+let busket = {
+	goods: [
+		{
+			name: "IPhone12",
+			price: 1000,
+			currency: USD,
+			count: 1,
+			discount: 15
+		},
+		{
+			name: "Macbook Air 13 M1",
+			price: 85000,
+			currency: RUB,
+			count: 1,
+			discount: 5
+		}
+	],	
+
+	countBasketPrice(currency) {
+		let totalPrice = 0;
+		this.goods.forEach(function(good, index, array) {			
+			totalPrice += countPrice(good, (good.currency == USD ? currency : 1));			
+		});
+		return totalPrice.toFixed(2);
+	}
 }
 
-function printGood(index, good) {
-	console.log(index + ")", good[NAME], "Price:", good[PRICE], "Count:", good[COUNT], "Discount", good[DISCOUNT]);
+function countPrice(good, currency) {
+	return currency * good.price * (1 - good.discount/100) * good.count;		;
+};
+
+
+/*************************
+ * Currency converter
+ * */
+let converter = {			
+	httpGet(fromCurrency, toCurrency)
+	{		    	
+		const theUrl = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${fromCurrency}/${toCurrency}.json`		
+		return new Promise((resolve, reject) => {
+	    	const https = require('https');
+			
+			https.get(theUrl, (response) => {	    
+			    let jsonText = '';		  		
+				response.on('data', (chunk) => {
+				    jsonText += chunk;
+				});		  		
+				response.on('end', () => {
+				  	const jsonRes = JSON.parse(jsonText); 		  	
+				  	resolve(jsonRes[toCurrency])
+				});
+
+			}).on("error", (error) => {
+			    reject("Error currency request: " + error.message);
+			});
+		
+		});
+	}
 }
 
-function printBasket(busket) {	
-	busket.forEach(function(good, index, array) {
-		printGood(index, good);
-	});
+function handleError(errMsg) {
+	console.log(errMsg);
 }
 
-function countBasketPrice(busket) {
-	let totalPrice = 0;
-
-	busket.forEach(function(good, index, array) {
-
-		totalPrice += countPrice(good);
-	});
-	return totalPrice;
+function handleSuccess(currency) {
+	busketPrice = busket.countBasketPrice(currency);
+	console.log(busketPrice, RUB)
 }
 
-printBasket(g_busket);
-console.log("Total price:", countBasketPrice(g_busket));
+function onClickAddToBusket() {	
+	alert('busket', busketPrice)
+}
+
+function Main() {
+	let resolve = converter.httpGet('usd', 'rub');
+	resolve.then(handleSuccess, handleError);
+}
+
+Main();
