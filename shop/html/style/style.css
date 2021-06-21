@@ -213,7 +213,7 @@ body {
     padding: 1.5em;
     text-align: center;
     list-style-type: none;
-    display: inline;
+    /*display: inline;*/
 }
 
 #catalog-list li img {
@@ -359,7 +359,11 @@ body {
 }
 
 .catalog-list-item {
-    display: inline;
+    /*display: inline;*/
+}
+
+.product-item {
+    display: inline-block;
 }
 
 #map {
