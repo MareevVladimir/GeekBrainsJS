@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+}
+
+.body {
+    background: #2e353d;
+}
+
+
+.menuButton{
+    width: 150px;
+    padding: 15px;
+    margin: 10px;
+    color: white;
+    background: #007b32;
+    text-align: center;
+    cursor: pointer;
+}
+.menuButton:hover{
+    background: #009641;
+}
+#game{
+    border-collapse: collapse;
+    background-color: #cccccc;
+    background-image: url("background.jpeg");    
+    margin: 2% auto 0;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+}
+
+#bar {
+    margin: 50px;
+}
+
+#menu{
+    display: flex;
+    justify-content: center;
+}
+
+td.cell{
+    width: 30px;
+    height: 30px;
+    border: 1px dotted #eee;
+    border-collapse: collapse;
+}
+.food{
+    background-image: url("js.png");    
+    background-color: #cccccc;    
+    background-repeat:no-repeat;background-size:30px 30px;
+    border: 1px solid black;
+}
+.snakeBody{
+    background: #e5e5e5;
+    background-image: url("ram.png");    
+    background-color: #cccccc;    
+    background-repeat:no-repeat;background-size:30px 30px;
+}
+.snakeHead{
+    background-image: url("chrome.png"); 
+    background-color: #cccccc;    
+    background-repeat:no-repeat;background-size:30px 30px;
+    border: 1px solid black;
+}
+
+.wall {
+    background-image: url("close.png");
+    background-color: #cccccc;
+    background-repeat:no-repeat;background-size:30px 30px;
+    border: 1px solid black;
+}
+
+
+/*
+.disabled {
+    background: #7c7c7c;
+}
+.disabled:hover{
+    background: #7c7c7c;
+}
+*/

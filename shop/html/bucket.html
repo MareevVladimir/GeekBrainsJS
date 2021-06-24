@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="img/main-max.png" type="image/png">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/style.css">    
+    <script src="../bucket.js" type="text/javascript" defer></script>
     <title>Каталог</title>
 </head>
 
-<body>
+<body onload="Gen()">
     <!--Шапка сайта ----------------------------------------->
     <div class="header">
         <div class="menu">
@@ -35,14 +36,11 @@
 
     <div class="content">
         <!-- Content -------------------------------------------->
-    <table class="bucket-table">
-        
-        <tr> <td rowspan="4"> Товары</td> <td>Название</td> <td>Цена</td> <td>Скидка</td> </tr>
-        <tr> <td></td> <td></td> <td></td> </tr>
-        <tr> <td></td> <td></td> <td></td> </tr>
-        <tr> <td></td> <td></td> <td></td> </tr>
-        <tr> <td colspan="4">Итого</td> </tr>
-    </table>
+        <div class="product"></div> 
+        <br>       
+        <div class="busket"></div>
+        <br>
+        <div class="busket-sum"></div>
     </div>
     <!--Хвост сайта------------------------------------------>
 
